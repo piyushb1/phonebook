@@ -40,7 +40,7 @@ router.get('/edit-form/:id', function(req, res, next) {
   var id = req.params.id;
   var sql = `SELECT * FROM products WHERE id=${id}`;
   db.query(sql, function(err, rows, fields) {
-      res.render('editform', {title: 'Edit Product', product: rows[0]});
+      res.render('edit', {title: 'Edit Product', product: rows[0]});
   });
 });
 
@@ -73,6 +73,23 @@ router.get('/delete/:id', function(req, res){
     res.redirect('/products');
   });
 });
+
+
+/*search */
+router.get('/search', function(req, res, next) {
+  res.render('search', {title: 'Results'});
+});
+
+router.post('/search', function(req, res, next) {
+  const word=req.body.word;
+
+  var sql = "SELECT * FROM products WHERE name like 'word%'";
+  db.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log(sql);
+  });
+});
+
 
 module.exports = router;
 
