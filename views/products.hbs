@@ -19,35 +19,33 @@
 
 
   <form method="POST" action="/search">
-  <input type="text" placeholder="Search.." class="typeahead tt-query" spellcheck="false" autocomplete="off" name="typeahead" style="width: 400px;">
+  <input type="text" placeholder="Search.." class="typeahead tt-query" spellcheck="false" autocomplete="off" name="typeahead" style="width: 200px;">
   <button type="submit"><i class="fa fa-search"></i></button><br>
   </form><br>
 
   
   
-  <br /><br />
-  <table class="table">
-    <tr>
-      <th>#ID</th>
-      <th>Product Name</th>
-      <th>Price</th>
-      <th>SKU</th>
-      <th>Action</th>
-    </tr>
+  <br />
+ 
     {{#each products}}
-      <tr>
-        <td>{{this.name}}</td>
-        <td>{{this.phono}}</td>
-        <td>{{this.dob}}</td>
-        <td>{{this.email}}</td>
-        <td>
-            <a href="/products/edit-form/{{this.id}}" class="btn btn-info btn-sm">Edit</a>
-            <a href="/products/delete/{{this.id}}" class="btn btn-danger btn-sm">Delete</a>
-        </td>
-      </tr>
+<div class="dropdown" >
+    <button style="width: 200px;" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{this.name}}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation" class="dropdown-header">DOB:</li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.dob}}</a></li>
+      <li role="presentation" class="dropdown-header">Mobile Number:</li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.phono}}</a></li>
+      <li role="presentation" class="dropdown-header">Email:</li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.email}}</a></li>
+      <li role="presentation"><a href="/products/edit-form/{{this.id}}" class="btn btn-info btn-sm">Edit</a></li>
+      <li role="presentation"><a href="/products/delete/{{this.id}}" class="btn btn-danger btn-sm">Delete</a></li>
+    </ul>
+  </div>
+      
     {{/each}}
-  </table>
-  <a style="float: right;" href="/products/create-form" class="btn btn-success">Create Contact</a>
+  </br>
+  <a style="float:left" href="/products/create-form" class="btn btn-success">Create Contact</a>
 
 </div>
 
